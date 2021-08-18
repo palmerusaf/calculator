@@ -1,4 +1,3 @@
-
 header h1 {
   border-style: solid;
   text-align: center;
@@ -31,7 +30,8 @@ td {
   width: 100%;
   text-align: right;
   align-self: center;
-  padding-right: .5em;
+  padding-right: 0.5em;
+  height: 65%;
 }
 
 #lowerCalContainer {
@@ -64,7 +64,6 @@ td {
   border: solid;
   border-width: 2px;
   width: 25em;
-  al
 }
 
 #mathFuncContainer td {
