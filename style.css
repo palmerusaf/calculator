@@ -1,39 +1,75 @@
-header{
-    
+
+header h1 {
+  border-style: solid;
+  text-align: center;
+  font-size: 2em;
 }
 
-header h1{
-    
+td {
+  text-align: center;
+  width: 100em;
 }
 
-#calContainer{
-
+#calContainer {
+  display: flexbox;
+  border: solid;
+  border-width: 2px;
+  border-color: red;
 }
 
-#numDisplayContainer{
-    
+#numDisplayContainer {
+  display: flex;
+  border: solid;
+  border-width: 2px;
+  justify-content: end;
+  height: 2em;
 }
 
-#lowerCalContainer{
-
+#numDisplayContainer div {
+  border: solid;
+  border-width: 2px;
+  width: 100%;
+  text-align: right;
+  align-self: center;
+  padding-right: .5em;
 }
 
-#lowerCalContainer td{
-
+#lowerCalContainer {
+  display: flex;
+  border: solid;
+  border-width: 2px;
 }
 
-#digitContainer{
-
+#lowerCalContainer td {
+  border: solid;
+  border-width: 2px;
 }
 
-#digitContainer td{
-
+#digitContainer {
+  display: flexbox;
+  border: solid;
+  border-width: 2px;
+  width: 75%;
 }
 
-#mathFuncContainer{
-
+#digitContainer td {
+  border: solid;
+  height: 2em;
+  width: 100em;
+  border-width: 2px;
 }
 
-#mathFuncContainer td{
+#mathFuncContainer {
+  display: flexbox;
+  border: solid;
+  border-width: 2px;
+  width: 25em;
+  al
+}
 
+#mathFuncContainer td {
+  color: red;
+  border: solid;
+  border-width: 2px;
+  height: 2.83em;
 }
