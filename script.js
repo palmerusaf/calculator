@@ -46,15 +46,24 @@ console.log(operationSelection(4, "f", 0));
 console.log(operationSelection(4, "f", 1));
  */
 
-/** get the number from digit buttons on button click */
-function getDigitButtonInput(){
-
+/** Callback function that gets text content */
+function getTextContent(e){
+  feedDisplayDigits(e.target.innerText);
 }
 
+/** get the number from digit buttons on button click and feed them to the display*/
+function getDigitButtonInput() {
+  const digitButtons = document.querySelectorAll(".digitBtn");
+  digitButtons.forEach((button) => {
+    button.addEventListener("click", getTextContent)
+  });
+}
+getDigitButtonInput();
+
 /** feed input from digit buttons into display */
-function feedDisplayDigits(digit){
-const display = document.querySelector("#numDisplay");
-display.textContent+=`${digit}`;
+function feedDisplayDigits(digit) {
+  const display = document.querySelector("#numDisplay");
+  display.textContent += `${digit}`;
 }
 // feedDisplayDigits tests
 /* 
