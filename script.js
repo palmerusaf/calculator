@@ -34,7 +34,7 @@ function mathOpsSelection(num1, opStr, num2) {
       return "ERROR: Operation Selection error.";
   }
 }
-// opsSelection tests
+// mathOpsSelection tests
 /** 
 console.log(operationSelection(4, "+", 4));
 console.log(operationSelection(4, "-", 4));
@@ -46,7 +46,7 @@ console.log(operationSelection(4, "f", 0));
 console.log(operationSelection(4, "f", 1));
  */
 
-/** Callback function that gets text content and call appropriate display function, redirecting all display */
+/** Callback function that gets text content and call appropriate display function, redirecting all display ops */
 function displayController(e) {
   let displayInput = e.target.textContent;
   if (Number.isInteger(+displayInput)) {
@@ -66,7 +66,7 @@ function displayController(e) {
         console.log("equals");
         break;
       default:
-        console.log("mathOpsButton");
+        feedDisplayMathOps(displayInput);
         break;
     }
   }
@@ -120,5 +120,13 @@ function clearDisplay() {
 }
 
 /** When math function button is pressed add space, math function symbol, and space to display. */
-
+function feedDisplayMathOps(mathOp){
+  const display = document.querySelector("#numDisplay");
+  disTxt = display.textContent;
+  if(disTxt==""||(disTxt.substr(-1)!=" ")&&disTxt.includes(" "))
+  return;
+  if(disTxt.substr(-1)==" ")
+  display.textContent = disTxt.slice(0,-3);
+  display.textContent += ` ${mathOp} `;
+}
 /** when equal is pressed get data from display pass to ops selection */
