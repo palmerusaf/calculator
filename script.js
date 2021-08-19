@@ -46,21 +46,53 @@ console.log(operationSelection(4, "f", 0));
 console.log(operationSelection(4, "f", 1));
  */
 
-/** Callback function that gets text content */
-function getTextContent(e){
-  feedDisplayDigits(e.target.innerText);
+/** Callback function that gets text content and call appropriate display function */
+function displayController(e) {
+  let displayInput = e;
+if(Number.isInteger(+displayInput)){
+  feedDisplayDigits(displayInput);
+}else{
+  switch (displayInput) {
+    case "CLEAR":
+      console.log("CLEAR");
+      break;
+    case ".":
+      console.log("decimal");
+      break;
+    case "←":
+      console.log("backspace");
+      break;
+    case "=":
+      console.log("equals");
+      break;
+      default:
+      console.log("is NaN");
+      break;}
+  }
 }
+// displayController tests
+//**
+displayController("2");
+displayController(".");
+displayController("←");
+displayController("=");
+displayController("CLEAR");
+displayController("*");
+displayController("/");
+displayController("+");
+displayController("-");
+//*/
 
 /** get the number from digit buttons on button click and feed them to the display*/
 function getDigitButtonInput() {
   const digitButtons = document.querySelectorAll(".digitBtn");
   digitButtons.forEach((button) => {
-    button.addEventListener("click", getTextContent)
+    button.addEventListener("click", displayController);
   });
 }
 getDigitButtonInput();
 
-/** feed input from digit buttons into display */
+/**  feed input from digit buttons into display */
 function feedDisplayDigits(digit) {
   const display = document.querySelector("#numDisplay");
   display.textContent += `${digit}`;
