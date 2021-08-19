@@ -60,7 +60,7 @@ function displayController(e) {
         console.log("decimal");
         break;
       case "←":
-        console.log("backspace");
+        backspace();
         break;
       case "=":
         evalDisplayData();
@@ -147,7 +147,7 @@ function evalDisplayData() {
     displayData[1],
     +displayData[2]
   );
-feedDisplayDigits(computedResult);
+  feedDisplayDigits(computedResult);
 }
 
 /** Read data from the display, formats it and returns as array */
@@ -155,4 +155,13 @@ function readDisplay() {
   const display = document.querySelector("#numDisplay");
   let disTxt = display.textContent.split(" ");
   return disTxt;
+}
+
+/** Remove last character from display */
+function backspace() {
+  const display = document.querySelector("#numDisplay");
+  if (display.textContent == "") return;
+  if (display.textContent[display.textContent.length - 1] == " ")
+    display.textContent = display.textContent.slice(0,-2);
+  display.textContent = display.textContent.slice(0,-1);
 }
