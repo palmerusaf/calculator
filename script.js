@@ -63,7 +63,7 @@ function displayController(e) {
         console.log("backspace");
         break;
       case "=":
-        console.log("equals");
+        evalDisplayData();
         break;
       default:
         feedDisplayMathOps(displayInput);
@@ -119,14 +119,40 @@ function clearDisplay() {
   display.textContent = "";
 }
 
-/** When math function button is pressed add space, math function symbol, and space to display. */
-function feedDisplayMathOps(mathOp){
+/** -When math function button is pressed add to display with spaces around
+ *
+ * -Don't add to display if display is empty
+ *
+ * -If the end of the display has a math symbol replace it
+ *
+ * -If the display has a math symbol but its not at end of display do nothing
+ *
+ * -TO-DO: Add ability to replace math symbol thats in the middle of the display
+ */
+function feedDisplayMathOps(mathOp) {
   const display = document.querySelector("#numDisplay");
-  disTxt = display.textContent;
-  if(disTxt==""||(disTxt.substr(-1)!=" ")&&disTxt.includes(" "))
-  return;
-  if(disTxt.substr(-1)==" ")
-  display.textContent = disTxt.slice(0,-3);
+  let disTxt = display.textContent;
+  if (disTxt == "" || (disTxt.substr(-1) != " " && disTxt.includes(" ")))
+    return;
+  if (disTxt.substr(-1) == " ") display.textContent = disTxt.slice(0, -3);
   display.textContent += ` ${mathOp} `;
 }
-/** when equal is pressed get data from display pass to ops selection */
+/** when equal is pressed get data from display pass to ops selection and return result to display overriding display*/
+function evalDisplayData() {
+  if (readDisplay().length != 3) return;
+  let displayData = readDisplay();
+  clearDisplay();
+  computedResult = mathOpsSelection(
+    +displayData[0],
+    displayData[1],
+    +displayData[2]
+  );
+feedDisplayDigits(computedResult);
+}
+
+/** Read data from the display, formats it and returns as array */
+function readDisplay() {
+  const display = document.querySelector("#numDisplay");
+  let disTxt = display.textContent.split(" ");
+  return disTxt;
+}
