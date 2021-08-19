@@ -49,25 +49,26 @@ console.log(operationSelection(4, "f", 1));
 /** Callback function that gets text content and call appropriate display function, redirecting all display */
 function displayController(e) {
   let displayInput = e.target.textContent;
-if(Number.isInteger(+displayInput)){
-  feedDisplayDigits(displayInput);
-}else{
-  switch (displayInput) {
-    case "CLEAR":
-      console.log("CLEAR");
-      break;
-    case ".":
-      console.log("decimal");
-      break;
-    case "←":
-      console.log("backspace");
-      break;
-    case "=":
-      console.log("equals");
-      break;
+  if (Number.isInteger(+displayInput)) {
+    feedDisplayDigits(displayInput);
+  } else {
+    switch (displayInput) {
+      case "CLEAR":
+        clearDisplay();
+        break;
+      case ".":
+        console.log("decimal");
+        break;
+      case "←":
+        console.log("backspace");
+        break;
+      case "=":
+        console.log("equals");
+        break;
       default:
-      console.log("mathOpsButton");
-      break;}
+        console.log("mathOpsButton");
+        break;
+    }
   }
 }
 // displayController tests
@@ -111,6 +112,12 @@ feedDisplayDigits(8);
 feedDisplayDigits(9);
 feedDisplayDigits(42);
 // */
+
+/** clear the display of all data */
+function clearDisplay() {
+  const display = document.querySelector("#numDisplay");
+  display.textContent = "";
+}
 
 /** When math function button is pressed add space, math function symbol, and space to display. */
 
