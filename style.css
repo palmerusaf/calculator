@@ -45,6 +45,10 @@ td {
   border-width: 2px;
 }
 
+#lowerCalContainer td:hover {
+cursor: pointer;
+}
+
 #digitContainer {
   display: flexbox;
   border: solid;
