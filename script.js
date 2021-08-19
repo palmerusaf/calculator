@@ -20,7 +20,7 @@ function divide(num1, num2) {
 }
 
 /** get two numbers, string operator, and select one of four basic math operations */
-function operationSelection(num1, opStr, num2) {
+function mathOpsSelection(num1, opStr, num2) {
   switch (opStr) {
     case "+":
       return add(num1, num2);
@@ -46,9 +46,9 @@ console.log(operationSelection(4, "f", 0));
 console.log(operationSelection(4, "f", 1));
  */
 
-/** Callback function that gets text content and call appropriate display function */
+/** Callback function that gets text content and call appropriate display function, redirecting all display */
 function displayController(e) {
-  let displayInput = e;
+  let displayInput = e.target.textContent;
 if(Number.isInteger(+displayInput)){
   feedDisplayDigits(displayInput);
 }else{
@@ -66,12 +66,12 @@ if(Number.isInteger(+displayInput)){
       console.log("equals");
       break;
       default:
-      console.log("is NaN");
+      console.log("mathOpsButton");
       break;}
   }
 }
 // displayController tests
-//**
+/**
 displayController("2");
 displayController(".");
 displayController("←");
@@ -83,14 +83,14 @@ displayController("+");
 displayController("-");
 //*/
 
-/** get the number from digit buttons on button click and feed them to the display*/
-function getDigitButtonInput() {
-  const digitButtons = document.querySelectorAll(".digitBtn");
-  digitButtons.forEach((button) => {
+/** get input from the calculator buttons on button click and feed them to the displayController*/
+function getButtonInput() {
+  const calButtons = document.querySelectorAll("#lowerCalContainer td");
+  calButtons.forEach((button) => {
     button.addEventListener("click", displayController);
   });
 }
-getDigitButtonInput();
+getButtonInput();
 
 /**  feed input from digit buttons into display */
 function feedDisplayDigits(digit) {
