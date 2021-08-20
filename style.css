@@ -21,17 +21,19 @@ td {
   border: solid;
   border-width: 2px;
   justify-content: end;
-  height: 2em;
+  height: 3em;
 }
 
 #numDisplayContainer div {
+  /* display: flex; */
   border: solid;
   border-width: 2px;
   width: 100%;
   text-align: right;
-  align-self: center;
-  padding-right: 0.5em;
-  height: 65%;
+  /* justify-content: right; */
+  overflow:scroll;
+  /* padding-right: 0.5em; */
+  height: 100%;
 }
 
 #lowerCalContainer {
@@ -46,7 +48,7 @@ td {
 }
 
 #lowerCalContainer td:hover {
-cursor: pointer;
+  cursor: pointer;
 }
 
 #digitContainer {
