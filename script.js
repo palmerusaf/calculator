@@ -128,19 +128,24 @@ function clearDisplay() {
  *
  * -Don't add to display if display is empty
  *
- * -If the end of the display has a math symbol replace it
- *
- * -If the display has a math symbol but its not at end of display do nothing
- *
- * -TO-DO: Add ability to replace math symbol thats in the middle of the display
+ * -Replace symbol if already in display otherwise append it.
  */
 function feedDisplayMathOps(mathOp) {
   const display = document.querySelector("#numDisplay");
   let disTxt = display.textContent;
-  if (disTxt == "" || (disTxt.substr(-1) != " " && disTxt.includes(" ")))
-    return;
-  if (disTxt.substr(-1) == " ") display.textContent = disTxt.slice(0, -3);
-  display.textContent += ` ${mathOp} `;
+  if (disTxt == "") return;
+  // replace symbol if its already in the display otherwise add to end
+  disTxt.includes(" ")
+    ? (display.textContent = disTxt.replace(
+        disTxt.charAt(disTxt.indexOf(" ") + 1),
+        mathOp
+      ))
+    : (display.textContent += ` ${mathOp} `);
+
+  // if (disTxt == "" || (disTxt.substr(-1) != " " && disTxt.includes(" ")))
+  //   return;
+  // if (disTxt.substr(-1) == " ") display.textContent = disTxt.slice(0, -3);
+  // display.textContent += ` ${mathOp} `;
 }
 /** when equal is pressed get data from display pass to ops selection and
  * return result to display overriding display*/
