@@ -124,8 +124,7 @@ feedDisplayDigits(42);
 
 /** clear the display of all data */
 function clearDisplay() {
-  const display = document.querySelector("#numDisplay");
-  display.textContent = "";
+  getDisplay().textContent = "";
 }
 
 /** -When math function button is pressed add to display with spaces around
@@ -173,8 +172,8 @@ function backspace() {
   getDisplay().textContent = getDisplay().textContent.slice(0, -1);
 }
 
-/** Add decimal to number unless number as digit */
+/** Add decimal to number unless number has digit */
 function addDecimalsToDisplay(){
-  if(readDisplay()[readDisplay().length-1]==""||readDisplay()[readDisplay().length-1].includes(".")) return console.log("don't add");
-return console.log("add");
+  if(readDisplay()[readDisplay().length-1]==""||readDisplay()[readDisplay().length-1].includes(".")) return;
+getDisplay().textContent+=".";
 }
