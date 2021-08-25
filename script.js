@@ -19,7 +19,7 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
-/** get two numbers, string operator, and select one of four basic math 
+/** get two numbers, string operator, and select one of four basic math
  * operations */
 function mathOpsSelection(num1, opStr, num2) {
   switch (opStr) {
@@ -47,10 +47,12 @@ console.log(operationSelection(4, "f", 0));
 console.log(operationSelection(4, "f", 1));
  */
 
-/** Callback function that gets text content and call appropriate display 
+/** Callback function that gets text content and call appropriate display
  * function, redirecting all display ops */
 function displayController(e) {
   let displayInput = e.target.textContent;
+  // clear error msgs
+  if (readDisplay()[0].includes("ERROR")) clearDisplay();
   if (Number.isInteger(+displayInput)) {
     feedDisplayDigits(displayInput);
   } else {
@@ -86,7 +88,7 @@ displayController("+");
 displayController("-");
 //*/
 
-/** get input from the calculator buttons on button click and feed them to the 
+/** get input from the calculator buttons on button click and feed them to the
  * displayController*/
 function getButtonInput() {
   const calButtons = document.querySelectorAll("#lowerCalContainer td");
@@ -140,10 +142,10 @@ function feedDisplayMathOps(mathOp) {
   if (disTxt.substr(-1) == " ") display.textContent = disTxt.slice(0, -3);
   display.textContent += ` ${mathOp} `;
 }
-/** when equal is pressed get data from display pass to ops selection and 
+/** when equal is pressed get data from display pass to ops selection and
  * return result to display overriding display*/
 function evalDisplayData() {
-  if (readDisplay()[2]==undefined||readDisplay()[2]=="") return;
+  if (readDisplay()[2] == undefined || readDisplay()[2] == "") return;
   let displayData = readDisplay();
   clearDisplay();
   computedResult = mathOpsSelection(
