@@ -37,15 +37,15 @@ function mathOpsSelection(num1, opStr, num2) {
 }
 // mathOpsSelection tests
 /** 
-console.log(operationSelection(4, "+", 4));
-console.log(operationSelection(4, "-", 4));
-console.log(operationSelection(4, "*", 4));
-console.log(operationSelection(4, "/", 4));
-console.log(operationSelection(1, "/", 4));
-console.log(operationSelection(4, "/", 0));
-console.log(operationSelection(4, "f", 0));
-console.log(operationSelection(4, "f", 1));
- */
+console.log(mathOpsSelection(+"400.", "+", +"0."));
+console.log(mathOpsSelection(4., "-", 4));
+console.log(mathOpsSelection(4., "*", 4));
+console.log(mathOpsSelection(4., "/", 4));
+console.log(mathOpsSelection(1, "/", 4));
+console.log(mathOpsSelection(4., "/", 0));
+console.log(mathOpsSelection(4, "f", 0));
+console.log(mathOpsSelection(4, "f", 1));
+ //*/
 
 /** Callback function that gets text content and call appropriate display
  * function, redirecting all display ops */
@@ -54,15 +54,15 @@ function displayController(e) {
   // clear error msgs
   if (readDisplay()[0].includes("ERROR")) clearDisplay();
   if (Number.isInteger(+displayInput)) {
-    feedDisplayDigits(displayInput);
+    addDigitsToDisplay(displayInput);
   } else {
     switch (displayInput) {
       case "CLEAR":
         clearDisplay();
         break;
       case ".":
-        console.log("decimal");
-        break;
+addDecimalsToDisplay();
+      break;
       case "←":
         backspace();
         break;
@@ -70,7 +70,7 @@ function displayController(e) {
         evalDisplayData();
         break;
       default:
-        feedDisplayMathOps(displayInput);
+        addMathSymToDisplay(displayInput);
         break;
     }
   }
@@ -98,10 +98,14 @@ function getButtonInput() {
 }
 getButtonInput();
 
+/** Get the display dom object */
+function getDisplay(){
+  return document.querySelector("#numDisplay");
+}
+
 /**  feed input from digit buttons into display */
-function feedDisplayDigits(digit) {
-  const display = document.querySelector("#numDisplay");
-  display.textContent += `${digit}`;
+function addDigitsToDisplay(digit) {
+  getDisplay().textContent += `${digit}`;
 }
 // feedDisplayDigits tests
 /* 
@@ -130,22 +134,16 @@ function clearDisplay() {
  *
  * -Replace symbol if already in display otherwise append it.
  */
-function feedDisplayMathOps(mathOp) {
-  const display = document.querySelector("#numDisplay");
-  let disTxt = display.textContent;
+function addMathSymToDisplay(mathOp) {
+  let disTxt = getDisplay().textContent;
   if (disTxt == "") return;
   // replace symbol if its already in the display otherwise add to end
   disTxt.includes(" ")
-    ? (display.textContent = disTxt.replace(
+    ? (getDisplay().textContent = disTxt.replace(
         disTxt.charAt(disTxt.indexOf(" ") + 1),
         mathOp
       ))
-    : (display.textContent += ` ${mathOp} `);
-
-  // if (disTxt == "" || (disTxt.substr(-1) != " " && disTxt.includes(" ")))
-  //   return;
-  // if (disTxt.substr(-1) == " ") display.textContent = disTxt.slice(0, -3);
-  // display.textContent += ` ${mathOp} `;
+    : (getDisplay().textContent += ` ${mathOp} `);
 }
 /** when equal is pressed get data from display pass to ops selection and
  * return result to display overriding display*/
@@ -158,21 +156,25 @@ function evalDisplayData() {
     displayData[1],
     +displayData[2]
   );
-  feedDisplayDigits(computedResult);
+  addDigitsToDisplay(computedResult);
 }
 
 /** Read data from the display, formats it and returns as array */
 function readDisplay() {
-  const display = document.querySelector("#numDisplay");
-  let disTxt = display.textContent.split(" ");
+  let disTxt = getDisplay().textContent.split(" ");
   return disTxt;
 }
 
 /** Remove last character from display */
 function backspace() {
-  const display = document.querySelector("#numDisplay");
-  if (display.textContent == "") return;
-  if (display.textContent[display.textContent.length - 1] == " ")
-    display.textContent = display.textContent.slice(0, -2);
-  display.textContent = display.textContent.slice(0, -1);
+  if (getDisplay().textContent == "") return;
+  if (getDisplay().textContent[getDisplay().textContent.length - 1] == " ")
+    getDisplay().textContent = getDisplay().textContent.slice(0, -2);
+  getDisplay().textContent = getDisplay().textContent.slice(0, -1);
+}
+
+/** Add decimal to number unless number as digit */
+function addDecimalsToDisplay(){
+  if(readDisplay()[readDisplay().length-1]==""||readDisplay()[readDisplay().length-1].includes(".")) return console.log("don't add");
+return console.log("add");
 }
