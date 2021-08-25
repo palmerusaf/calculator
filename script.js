@@ -15,7 +15,7 @@ function multiply(num1, num2) {
 
 /** divide two numbers */
 function divide(num1, num2) {
-  if (num2 == 0) return "ERROR: Division by zero not supported at this time.";
+  if (num2 === 0) return "ERROR: Division by zero not supported at this time.";
   return num1 / num2;
 }
 
@@ -61,8 +61,8 @@ function displayController(e) {
         clearDisplay();
         break;
       case ".":
-addDecimalsToDisplay();
-      break;
+        addDecimalsToDisplay();
+        break;
       case "←":
         backspace();
         break;
@@ -91,7 +91,7 @@ displayController("-");
 /** get input from the calculator buttons on button click and feed them to the
  * displayController*/
 function getButtonInput() {
-  const calButtons = document.querySelectorAll("#lowerCalContainer td");
+  let calButtons = document.querySelectorAll("#lowerCalContainer td");
   calButtons.forEach((button) => {
     button.addEventListener("click", displayController);
   });
@@ -99,7 +99,7 @@ function getButtonInput() {
 getButtonInput();
 
 /** Get the display dom object */
-function getDisplay(){
+function getDisplay() {
   return document.querySelector("#numDisplay");
 }
 
@@ -135,7 +135,7 @@ function clearDisplay() {
  */
 function addMathSymToDisplay(mathOp) {
   let disTxt = getDisplay().textContent;
-  if (disTxt == "") return;
+  if (disTxt === "") return;
   // replace symbol if its already in the display otherwise add to end
   disTxt.includes(" ")
     ? (getDisplay().textContent = disTxt.replace(
@@ -147,7 +147,7 @@ function addMathSymToDisplay(mathOp) {
 /** when equal is pressed get data from display pass to ops selection and
  * return result to display overriding display*/
 function evalDisplayData() {
-  if (readDisplay()[2] == undefined || readDisplay()[2] == "") return;
+  if (readDisplay()[2] === undefined || readDisplay()[2] === "") return;
   let displayData = readDisplay();
   clearDisplay();
   computedResult = mathOpsSelection(
@@ -167,14 +167,40 @@ function readDisplay() {
 /** Remove last character from display */
 function backspace() {
   let disTxt = getDisplay().textContent;
-  if (disTxt == "") return;
-    if (disTxt[disTxt.length - 1] == " ")
+  if (disTxt === "") return;
+  if (disTxt[disTxt.length - 1] === " ")
     getDisplay().textContent = disTxt.slice(0, -2);
   getDisplay().textContent = getDisplay().textContent.slice(0, -1);
 }
 
 /** Add decimal to number unless number has digit */
-function addDecimalsToDisplay(){
-  if(readDisplay()[readDisplay().length-1]==""||readDisplay()[readDisplay().length-1].includes(".")) return;
-getDisplay().textContent+=".";
+function addDecimalsToDisplay() {
+  if (
+    readDisplay()[readDisplay().length - 1] == "" ||
+    readDisplay()[readDisplay().length - 1].includes(".")
+  )
+    return;
+  getDisplay().textContent += ".";
 }
+
+/** Format number by adding commas */
+function formatNumber(num) {
+  return Intl.NumberFormat("en-US").format(num);
+}
+// formatNumber tests
+//*
+console.log(formatNumber(100000000));
+console.log(formatNumber(10000000.0000000));
+console.log(formatNumber(123));
+console.log(formatNumber("123"));
+//*/
+
+/** Unformat number to use it in calculations */
+function unformatNumber(num) {
+ return num.replace(/,/g, "");
+}
+// unformatNumber tests
+/*
+console.log(unformatNumber("1,000,000"));
+console.log(unformatNumber("0"));
+//*/

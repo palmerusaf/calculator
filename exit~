@@ -6,4 +6,5 @@
 # Changes to be committed:
 #	modified:   script.js
 #
-add formatNumber and unformateNumber functions for input/output
+modifiy feed display mathops function to allow the user to change math
+symbol after second number is entered 
