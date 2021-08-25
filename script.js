@@ -166,9 +166,10 @@ function readDisplay() {
 
 /** Remove last character from display */
 function backspace() {
-  if (getDisplay().textContent == "") return;
-  if (getDisplay().textContent[getDisplay().textContent.length - 1] == " ")
-    getDisplay().textContent = getDisplay().textContent.slice(0, -2);
+  let disTxt = getDisplay().textContent;
+  if (disTxt == "") return;
+    if (disTxt[disTxt.length - 1] == " ")
+    getDisplay().textContent = disTxt.slice(0, -2);
   getDisplay().textContent = getDisplay().textContent.slice(0, -1);
 }
 
