@@ -25,14 +25,11 @@ td {
 }
 
 #numDisplayContainer div {
-  /* display: flex; */
   border: solid;
   border-width: 2px;
   width: 100%;
   text-align: right;
-  /* justify-content: right; */
   overflow:scroll;
-  /* padding-right: 0.5em; */
   height: 100%;
 }
 

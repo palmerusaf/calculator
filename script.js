@@ -19,7 +19,8 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
-/** get two numbers, string operator, and select one of four basic math operations */
+/** get two numbers, string operator, and select one of four basic math 
+ * operations */
 function mathOpsSelection(num1, opStr, num2) {
   switch (opStr) {
     case "+":
@@ -46,7 +47,8 @@ console.log(operationSelection(4, "f", 0));
 console.log(operationSelection(4, "f", 1));
  */
 
-/** Callback function that gets text content and call appropriate display function, redirecting all display ops */
+/** Callback function that gets text content and call appropriate display 
+ * function, redirecting all display ops */
 function displayController(e) {
   let displayInput = e.target.textContent;
   if (Number.isInteger(+displayInput)) {
@@ -84,7 +86,8 @@ displayController("+");
 displayController("-");
 //*/
 
-/** get input from the calculator buttons on button click and feed them to the displayController*/
+/** get input from the calculator buttons on button click and feed them to the 
+ * displayController*/
 function getButtonInput() {
   const calButtons = document.querySelectorAll("#lowerCalContainer td");
   calButtons.forEach((button) => {
@@ -137,9 +140,10 @@ function feedDisplayMathOps(mathOp) {
   if (disTxt.substr(-1) == " ") display.textContent = disTxt.slice(0, -3);
   display.textContent += ` ${mathOp} `;
 }
-/** when equal is pressed get data from display pass to ops selection and return result to display overriding display*/
+/** when equal is pressed get data from display pass to ops selection and 
+ * return result to display overriding display*/
 function evalDisplayData() {
-  if (readDisplay().length != 3) return;
+  if (readDisplay()[2]==undefined||readDisplay()[2]=="") return;
   let displayData = readDisplay();
   clearDisplay();
   computedResult = mathOpsSelection(
@@ -162,6 +166,6 @@ function backspace() {
   const display = document.querySelector("#numDisplay");
   if (display.textContent == "") return;
   if (display.textContent[display.textContent.length - 1] == " ")
-    display.textContent = display.textContent.slice(0,-2);
-  display.textContent = display.textContent.slice(0,-1);
+    display.textContent = display.textContent.slice(0, -2);
+  display.textContent = display.textContent.slice(0, -1);
 }
