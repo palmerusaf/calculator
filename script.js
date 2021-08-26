@@ -212,12 +212,17 @@ for (let i = 0; i < tests.length; i++) {
 
 /** Remove last character from display */
 function backspace() {
-  let displayContent = getDisplay().textContent;
+  let displayContent = readFromDisplay();
+  displayContent = displayContent.join(" ");
   if (displayContent === "") return;
-  if (displayContent[displayContent.length - 1] === " ")
-    getDisplay().textContent = displayContent.slice(0, -2);
-  getDisplay().textContent = getDisplay().textContent.slice(0, -1);
+  displayContent[displayContent.length - 1] === " "
+    ? writeToDisplay(displayContent.slice(0, -3).split(" "))
+    : writeToDisplay(displayContent.slice(0, -1).split(" "));
 }
+// backspace tests
+/*
+writeToDisplay("")
+//*/
 
 /** Add decimal to number unless number has digit */
 function addDecimalsToDisplay() {
