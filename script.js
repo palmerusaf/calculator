@@ -168,26 +168,34 @@ function readFromDisplay() {
   return displayContent;
 }
 
-/** Formats data and writes it to the display, takes an array, if */
+/** Formats data and writes it to the display, takes an array
+ * if the input is in scientific notation it skips formatting.
+ * skips formatting empty strings to prevent conversion to zero.
+ */
 function writeToDisplay(displayContent) {
-  if (displayContent[0].includes("e+")) {
+  if (displayContent[0].includes("e") || displayContent[0] === "") {
     getDisplay().textContent = displayContent;
     return;
   }
   displayContent[0] = formatNumber(displayContent[0]);
-  if (displayContent.length === 3) {
+  if (displayContent[2] === "")
+    getDisplay().textContent = displayContent.join(" ");
+  else if (displayContent.length === 3) {
     displayContent[2] = formatNumber(displayContent[2]);
-    getDisplay().textContent =
-      `${displayContent[0]} ${displayContent[1]}` + ` ${displayContent[2]}`;
+    getDisplay().textContent = displayContent.join(" ");
   } else getDisplay().textContent = `${displayContent[0]}`;
 }
 // writeToDisplay test
 //*
 let tests = [
+  [""],
   ["1234"],
   ["1234", "-", "1234"],
   ["12341234", "+", "12341234"],
+  ["12341234", "/", "12341234"],
+  ["12341234", "/", ""],
   ["1e+23"],
+  ["ERROR: Division by zero not supported at this time."]
 ];
 for (let i = 0; i < tests.length; i++) {
   writeToDisplay(tests[i]);
