@@ -226,15 +226,21 @@ function addDecimalsToDisplay() {
   getDisplay().textContent += ".";
 }
 
-/** Format number by adding commas */
+/** Format number by adding commas, allow decimals */
 function formatNumber(num) {
+if(num.toString().includes(".")){
+  num = num.toString().split(".");
+num[0]=Intl.NumberFormat("en-US").format(num[0]);
+return num.join(".");
+}
   return Intl.NumberFormat("en-US").format(num);
 }
 // formatNumber tests
 /*
-console.log(formatNumber(100000000));
-console.log(formatNumber(10000000.0000000));
-console.log(formatNumber(123));
+console.log(formatNumber("100000000"));
+console.log(formatNumber("10000000.00100000"));
+console.log(formatNumber("10000000.0"));
+console.log(formatNumber("10000000."));
 console.log(formatNumber("123"));
 //*/
 
@@ -245,5 +251,9 @@ function unformatNumber(num) {
 // unformatNumber tests
 /*
 console.log(unformatNumber("1,000,000"));
+console.log(unformatNumber("1,000,000."));
+console.log(unformatNumber("1,000,000.0"));
+console.log(unformatNumber("1,000,000.01"));
 console.log(unformatNumber("0"));
+
 //*/
