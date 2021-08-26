@@ -52,9 +52,9 @@ console.log(mathOpsSelection(4, "f", 1));
 function displayController(e) {
   let displayInput = e.target.textContent;
   // clear error msgs
-  if (readDisplay()[0].includes("ERROR")) clearDisplay();
+  if (readFromDisplay()[0].includes("ERROR")) clearDisplay();
   if (Number.isInteger(+displayInput)) {
-    addDigitsToDisplay(displayInput);
+    concatDigits(displayInput);
   } else {
     switch (displayInput) {
       case "CLEAR":
@@ -70,7 +70,7 @@ function displayController(e) {
         evalDisplayData();
         break;
       default:
-        addMathSymToDisplay(displayInput);
+        concatMathSymbol(displayInput);
         break;
     }
   }
@@ -104,7 +104,7 @@ function getDisplay() {
 }
 
 /**  feed input from digit buttons into display */
-function addDigitsToDisplay(digit) {
+function concatDigits(digit) {
   getDisplay().textContent += `${digit}`;
 }
 // feedDisplayDigits tests
@@ -133,13 +133,13 @@ function clearDisplay() {
  *
  * -Replace symbol if already in display otherwise append it.
  */
-function addMathSymToDisplay(mathOp) {
-  let disTxt = getDisplay().textContent;
-  if (disTxt === "") return;
+function concatMathSymbol(mathOp) {
+  let displayContent = getDisplay().textContent;
+  if (displayContent === "") return;
   // replace symbol if its already in the display otherwise add to end
-  disTxt.includes(" ")
-    ? (getDisplay().textContent = disTxt.replace(
-        disTxt.charAt(disTxt.indexOf(" ") + 1),
+  displayContent.includes(" ")
+    ? (getDisplay().textContent = displayContent.replace(
+        displayContent.charAt(displayContent.indexOf(" ") + 1),
         mathOp
       ))
     : (getDisplay().textContent += ` ${mathOp} `);
@@ -147,37 +147,69 @@ function addMathSymToDisplay(mathOp) {
 /** when equal is pressed get data from display pass to ops selection and
  * return result to display overriding display*/
 function evalDisplayData() {
-  if (readDisplay()[2] === undefined || readDisplay()[2] === "") return;
-  let displayData = readDisplay();
+  let displayContent = readFromDisplay();
+  if (displayContent[2] === undefined || displayContent[2] === "") return;
+  let displayData = displayContent;
   clearDisplay();
   computedResult = mathOpsSelection(
     +displayData[0],
     displayData[1],
     +displayData[2]
   );
-  addDigitsToDisplay(computedResult);
+  concatDigits(computedResult);
 }
 
-/** Read data from the display, formats it and returns as array */
-function readDisplay() {
-  let disTxt = getDisplay().textContent.split(" ");
-  return disTxt;
+/** Read data from the display, removes formatting and returns as array */
+function readFromDisplay() {
+  let displayContent = getDisplay().textContent.split(" ");
+  displayContent[0] = unformatNumber(displayContent[0]);
+  if (displayContent.length === 3)
+    displayContent[2] = unformatNumber(displayContent[2]);
+  return displayContent;
 }
+
+/** Formats data and writes it to the display, takes an array, if */
+function writeToDisplay(displayContent) {
+  if (displayContent[0].includes("e+")) {
+    getDisplay().textContent = displayContent;
+    return;
+  }
+  displayContent[0] = formatNumber(displayContent[0]);
+  if (displayContent.length === 3) {
+    displayContent[2] = formatNumber(displayContent[2]);
+    getDisplay().textContent =
+      `${displayContent[0]} ${displayContent[1]}` + ` ${displayContent[2]}`;
+  } else getDisplay().textContent = `${displayContent[0]}`;
+}
+// writeToDisplay test
+//*
+let tests = [
+  ["1234"],
+  ["1234", "-", "1234"],
+  ["12341234", "+", "12341234"],
+  ["1e+23"],
+];
+for (let i = 0; i < tests.length; i++) {
+  writeToDisplay(tests[i]);
+  console.log(getDisplay().textContent);
+  clearDisplay();
+}
+//*/
 
 /** Remove last character from display */
 function backspace() {
-  let disTxt = getDisplay().textContent;
-  if (disTxt === "") return;
-  if (disTxt[disTxt.length - 1] === " ")
-    getDisplay().textContent = disTxt.slice(0, -2);
+  let displayContent = getDisplay().textContent;
+  if (displayContent === "") return;
+  if (displayContent[displayContent.length - 1] === " ")
+    getDisplay().textContent = displayContent.slice(0, -2);
   getDisplay().textContent = getDisplay().textContent.slice(0, -1);
 }
 
 /** Add decimal to number unless number has digit */
 function addDecimalsToDisplay() {
   if (
-    readDisplay()[readDisplay().length - 1] == "" ||
-    readDisplay()[readDisplay().length - 1].includes(".")
+    readFromDisplay()[readFromDisplay().length - 1] == "" ||
+    readFromDisplay()[readFromDisplay().length - 1].includes(".")
   )
     return;
   getDisplay().textContent += ".";
@@ -197,7 +229,7 @@ console.log(formatNumber("123"));
 
 /** Unformat number to use it in calculations */
 function unformatNumber(num) {
- return num.replace(/,/g, "");
+  return num.replace(/,/g, "");
 }
 // unformatNumber tests
 /*
