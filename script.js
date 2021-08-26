@@ -67,7 +67,7 @@ function displayController(e) {
         backspace();
         break;
       case "=":
-        evalDisplayData();
+        evalDisplayContent();
         break;
       default:
         concatMathSymbol(displayInput);
@@ -105,21 +105,23 @@ function getDisplay() {
 
 /**  feed input from digit buttons into display */
 function concatDigits(digit) {
-  getDisplay().textContent += `${digit}`;
+  let displayContent = readFromDisplay();
+  displayContent[displayContent.length-1]+=digit;
+  writeToDisplay(displayContent);  
 }
-// feedDisplayDigits tests
+// concatDigits tests
 /* 
-feedDisplayDigits(0);
-feedDisplayDigits(1);
-feedDisplayDigits(2);
-feedDisplayDigits(3);
-feedDisplayDigits(4);
-feedDisplayDigits(5);
-feedDisplayDigits(6);
-feedDisplayDigits(7);
-feedDisplayDigits(8);
-feedDisplayDigits(9);
-feedDisplayDigits(42);
+concatDigits(0);
+concatDigits(1);
+concatDigits(2);
+concatDigits(3);
+concatDigits(4);
+concatDigits(5);
+concatDigits(6);
+concatDigits(7);
+concatDigits(8);
+concatDigits(9);
+concatDigits(42);
 // */
 
 /** clear the display of all data */
@@ -146,17 +148,18 @@ function concatMathSymbol(mathOp) {
 }
 /** when equal is pressed get data from display pass to ops selection and
  * return result to display overriding display*/
-function evalDisplayData() {
+function evalDisplayContent() {
   let displayContent = readFromDisplay();
   if (displayContent[2] === undefined || displayContent[2] === "") return;
-  let displayData = displayContent;
   clearDisplay();
-  computedResult = mathOpsSelection(
-    +displayData[0],
-    displayData[1],
-    +displayData[2]
+  let computedResult = mathOpsSelection(
+    +displayContent[0],
+    displayContent[1],
+    +displayContent[2]
   );
-  concatDigits(computedResult);
+  displayContent = [`${computedResult}`];
+  console.log(displayContent);
+  writeToDisplay(displayContent);
 }
 
 /** Read data from the display, removes formatting and returns as array */
@@ -185,8 +188,8 @@ function writeToDisplay(displayContent) {
     getDisplay().textContent = displayContent.join(" ");
   } else getDisplay().textContent = `${displayContent[0]}`;
 }
-// writeToDisplay test
-//*
+// writeToDisplay tests
+/*
 let tests = [
   [""],
   ["1234"],
