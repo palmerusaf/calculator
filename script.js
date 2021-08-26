@@ -188,7 +188,7 @@ function formatNumber(num) {
   return Intl.NumberFormat("en-US").format(num);
 }
 // formatNumber tests
-//*
+/*
 console.log(formatNumber(100000000));
 console.log(formatNumber(10000000.0000000));
 console.log(formatNumber(123));
