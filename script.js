@@ -49,10 +49,14 @@ console.log(mathOpsSelection(4, "f", 1));
 
 /** Callback function that gets text content and call appropriate display
  * function, redirecting all display ops */
-function displayController(e) {
+function buttonController(e) {
   let displayInput = e.target.textContent;
   // clear error msgs
-  if (readFromDisplay()[0].includes("ERROR")) clearDisplay();
+  if (
+    readFromDisplay()[0].includes("e") ||
+    readFromDisplay()[0].includes("ERROR")
+  )
+    clearDisplay();
   if (Number.isInteger(+displayInput)) {
     concatDigits(displayInput);
   } else {
@@ -93,7 +97,7 @@ displayController("-");
 function getButtonInput() {
   let calButtons = document.querySelectorAll("#lowerCalContainer td");
   calButtons.forEach((button) => {
-    button.addEventListener("click", displayController);
+    button.addEventListener("click", buttonController);
   });
 }
 getButtonInput();
@@ -106,8 +110,8 @@ function getDisplay() {
 /**  feed input from digit buttons into display */
 function concatDigits(digit) {
   let displayContent = readFromDisplay();
-  displayContent[displayContent.length-1]+=digit;
-  writeToDisplay(displayContent);  
+  displayContent[displayContent.length - 1] += digit;
+  writeToDisplay(displayContent);
 }
 // concatDigits tests
 /* 
@@ -158,7 +162,6 @@ function evalDisplayContent() {
     +displayContent[2]
   );
   displayContent = [`${computedResult}`];
-  console.log(displayContent);
   writeToDisplay(displayContent);
 }
 
@@ -218,9 +221,10 @@ function backspace() {
 
 /** Add decimal to number unless number has digit */
 function addDecimalsToDisplay() {
+  let displayContent = readFromDisplay();
   if (
-    readFromDisplay()[readFromDisplay().length - 1] == "" ||
-    readFromDisplay()[readFromDisplay().length - 1].includes(".")
+    displayContent[displayContent.length - 1] == "" ||
+    displayContent[displayContent.length - 1].includes(".")
   )
     return;
   getDisplay().textContent += ".";
@@ -228,11 +232,11 @@ function addDecimalsToDisplay() {
 
 /** Format number by adding commas, allow decimals */
 function formatNumber(num) {
-if(num.toString().includes(".")){
-  num = num.toString().split(".");
-num[0]=Intl.NumberFormat("en-US").format(num[0]);
-return num.join(".");
-}
+  if (num.toString().includes(".")) {
+    num = num.toString().split(".");
+    num[0] = Intl.NumberFormat("en-US").format(num[0]);
+    return num.join(".");
+  }
   return Intl.NumberFormat("en-US").format(num);
 }
 // formatNumber tests
