@@ -27,9 +27,9 @@ function mathOpsSelection(num1, opStr, num2) {
       return add(num1, num2);
     case "-":
       return subtract(num1, num2);
-    case "*":
+    case "×":
       return multiply(num1, num2);
-    case "/":
+    case "÷":
       return divide(num1, num2);
     default:
       return "ERROR: Operation Selection error.";
@@ -39,10 +39,10 @@ function mathOpsSelection(num1, opStr, num2) {
 /** 
 console.log(mathOpsSelection(+"400.", "+", +"0."));
 console.log(mathOpsSelection(4., "-", 4));
-console.log(mathOpsSelection(4., "*", 4));
-console.log(mathOpsSelection(4., "/", 4));
-console.log(mathOpsSelection(1, "/", 4));
-console.log(mathOpsSelection(4., "/", 0));
+console.log(mathOpsSelection(4., "×", 4));
+console.log(mathOpsSelection(4., "÷", 4));
+console.log(mathOpsSelection(1, "÷", 4));
+console.log(mathOpsSelection(4., "÷", 0));
 console.log(mathOpsSelection(4, "f", 0));
 console.log(mathOpsSelection(4, "f", 1));
  //*/
@@ -86,8 +86,8 @@ displayController(".");
 displayController("←");
 displayController("=");
 displayController("CLEAR");
-displayController("*");
-displayController("/");
+displayController("×");
+displayController("÷");
 displayController("+");
 displayController("-");
 //*/
@@ -198,8 +198,8 @@ let tests = [
   ["1234"],
   ["1234", "-", "1234"],
   ["12341234", "+", "12341234"],
-  ["12341234", "/", "12341234"],
-  ["12341234", "/", ""],
+  ["12341234", "÷", "12341234"],
+  ["12341234", "÷", ""],
   ["1e+23"],
   ["ERROR: Division by zero not supported at this time."]
 ];
