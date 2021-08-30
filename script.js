@@ -61,7 +61,7 @@ function buttonController(e) {
     concatDigits(displayInput);
   } else {
     switch (displayInput) {
-      case "CLEAR":
+      case "C":
         clearDisplay();
         break;
       case ".":
@@ -85,7 +85,7 @@ displayController("2");
 displayController(".");
 displayController("←");
 displayController("=");
-displayController("CLEAR");
+displayController("C");
 displayController("×");
 displayController("÷");
 displayController("+");
