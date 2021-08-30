@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
+
 header h1 {
   border-style: solid;
   text-align: center;
   font-size: 2em;
+  font-family: 'Iceland', cursive;
 }
 
 td {
   text-align: center;
   width: 100em;
+  font-family: 'Iceland', cursive;
 }
 
 #calContainer {
