@@ -6,10 +6,10 @@
   --numberButtonsColor: #ffac41;
   --mathSymButtonColor: #ff1e56;
   --displayTextColor: white;
-  --displayBackgroundColor: var(--buttonHoverColor);
   --buttonHoverColor: black;
-  /* --buttonHoverColor: #636363; */
   --calculatorBackgroundColor: #323232;
+  --displayBackgroundColor: var(--buttonHoverColor);
+  --radius: .9em;
 }
 
 ::-webkit-scrollbar {
@@ -55,24 +55,20 @@ header h1 {
   border-radius: 2em;
 }
 
-/* #numDisplayContainer {
+#numDisplayContainer {
   display: flex;
-  border: solid;
-  border-width: 2px;
-  justify-content: end;
-  height: 3em;
-} */
+  height: 7vh;
+}
 
 #numDisplay {
-  --radius: 6vw;
   border-top-right-radius: var(--radius);
   border-top-left-radius: var(--radius);
   text-align: right;
-  justify-self: center;
-  padding-right: 2vw;
+  padding-right: .75em;
   overflow: scroll;
   overflow-y: hidden;
-  height: 7vh;
+  padding-top: 1vh;
+  width: 100em;
   font-size: 4.5vh;
   background-color: var(--displayBackgroundColor);
   color: var(--displayTextColor);
@@ -93,12 +89,24 @@ header h1 {
   font-size: 200%;
   border-radius: 2em;
   border-width: 0.5vh;
-}
+  }
 
 /* affects all buttons on hover*/
 #lowerCalContainer td:hover {
   cursor: pointer;
-  background-color: var(--buttonHoverColor);
+  background-color: var(--backgroundColor);
+  /* transition-property: background-color;  */
+  /* transition-duration: .5s; */
+  transform: scale(1.05);
+  /* transition: transform .2s; */
+  transition: background-color .3s;
+}
+
+#lowerCalContainer td:active {
+color: var(--displayTextColor);
+  transform: scale(.95);
+  transition: color;
+  transition-duration: .2s;
 }
 
 #digitContainer {
