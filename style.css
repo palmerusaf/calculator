@@ -9,13 +9,12 @@
   --buttonHoverColor: black;
   --calculatorBackgroundColor: #323232;
   --displayBackgroundColor: var(--buttonHoverColor);
-  --radius: .9em;
+  --radius: 0.9em;
 }
 
 ::-webkit-scrollbar {
   width: 1vh;
 }
-
 
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -52,7 +51,8 @@ header h1 {
   display: flexbox;
   background-color: var(--calculatorBackgroundColor);
   padding: 2vmin;
-  border-radius: 2em;
+  border-radius: 1.5em;
+  border-style: groove;
 }
 
 #numDisplayContainer {
@@ -64,7 +64,7 @@ header h1 {
   border-top-right-radius: var(--radius);
   border-top-left-radius: var(--radius);
   text-align: right;
-  padding-right: .75em;
+  padding-right: 0.75em;
   overflow: scroll;
   overflow-y: hidden;
   padding-top: 1vh;
@@ -78,7 +78,11 @@ header h1 {
 /* container stores digits and math functions */
 #lowerCalContainer {
   display: flex;
-  border-width: 2px;
+  border-width: 0.5vh;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  border-style:solid;
+  border-color:var(--backgroundColor);
 }
 
 /* affects all buttons */
@@ -87,55 +91,50 @@ header h1 {
   width: 100em;
   font-family: "Iceland", cursive;
   font-size: 200%;
-  border-radius: 2em;
+  border-radius: .3em;
   border-width: 0.5vh;
-  }
+  border-style:solid;
+}
 
 /* affects all buttons on hover*/
 #lowerCalContainer td:hover {
   cursor: pointer;
   background-color: var(--backgroundColor);
-  /* transition-property: background-color;  */
-  /* transition-duration: .5s; */
   transform: scale(1.05);
-  /* transition: transform .2s; */
-  transition: background-color .3s;
+  transition: background-color 0.3s;
 }
 
 #lowerCalContainer td:active {
-color: var(--displayTextColor);
-  transform: scale(.95);
+  color: var(--displayTextColor);
+  transform: scale(0.95);
   transition: color;
-  transition-duration: .2s;
+/*   transition-duration: 0.2s; */
 }
 
 #digitContainer {
   display: flexbox;
-  border: solid;
-  border-width: 2px;
   width: 50%;
+  padding: 1vmin;
+  padding-right: 0.5vmin;
+  border-right-style:dotted;
 }
 
 #mathFuncContainer {
   display: flexbox;
-  border: solid;
-  border-width: 2px;
   width: 50%;
+  padding: 1vmin;
+  padding-left: 0.5vmin;
 }
 
 /** number buttons */
 #digitContainer td {
-  border: solid;
   height: 15.48vh;
   width: 40vw;
-  border-width: 2px;
   color: var(--numberButtonsColor);
   font-size: 13vmin;
 }
 
 #mathFuncContainer td {
-  border: solid;
-  border-width: 2px;
   height: 21vh;
   width: 40vw;
   font-size: 20vmin;
