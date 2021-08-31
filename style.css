@@ -16,14 +16,15 @@
   width: 1vh;
 }
 
+
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px var(--displayTextColor); 
+  -webkit-box-shadow: inset 0 0 6px var(--displayTextColor);
 }
 
 ::-webkit-scrollbar-corner {
@@ -47,29 +48,30 @@ header h1 {
 
 #calContainer {
   border-top-right-radius: 3em;
-border-top-left-radius: 3em;
+  border-top-left-radius: 3em;
   display: flexbox;
   background-color: var(--calculatorBackgroundColor);
   padding: 2vmin;
   border-radius: 2em;
 }
 
-#numDisplayContainer {
+/* #numDisplayContainer {
   display: flex;
   border: solid;
   border-width: 2px;
   justify-content: end;
   height: 3em;
-}
+} */
 
 #numDisplay {
   --radius: 6vw;
-border-top-right-radius: var(--radius);
-border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  border-top-left-radius: var(--radius);
   text-align: right;
-justify-self:center;
+  justify-self: center;
   padding-right: 2vw;
   overflow: scroll;
+  overflow-y: hidden;
   height: 7vh;
   font-size: 4.5vh;
   background-color: var(--displayBackgroundColor);
@@ -135,8 +137,8 @@ justify-self:center;
 /* stop text form highlighting on click */
 .disable-select {
   user-select: none; /* supported by Chrome and Opera */
- -webkit-user-select: none; /* Safari */
- -khtml-user-select: none; /* Konqueror HTML */
- -moz-user-select: none; /* Firefox */
- -ms-user-select: none; /* Internet Explorer/Edge */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
