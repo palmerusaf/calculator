@@ -67,6 +67,7 @@ header h1 {
   padding-right: 0.75em;
   overflow: scroll;
   overflow-y: hidden;
+  white-space: nowrap;
   padding-top: 1vh;
   width: 100em;
   font-size: 4.5vh;
