@@ -161,7 +161,7 @@ function evalDisplayContent() {
     displayContent[1],
     +displayContent[2]
   );
-  displayContent = [`${computedResult.toFixed(4)}`];
+  displayContent = [`${computedResult}`];
   writeToDisplay(displayContent);
 }
 
