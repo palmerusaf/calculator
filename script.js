@@ -49,8 +49,7 @@ console.log(mathOpsSelection(4, "f", 1));
 
 /** Callback function that gets text content and call appropriate display
  * function, redirecting all display ops */
-function buttonController(e) {
-  let displayInput = e.target.textContent;
+function eventController(displayInput) {
   // clear error msgs
   if (
     readFromDisplay()[0].includes("e") ||
@@ -94,13 +93,15 @@ displayController("-");
 
 /** get input from the calculator buttons on button click and feed them to the
  * displayController*/
-function getButtonInput() {
+function getMouseClickInput() {
   let calButtons = document.querySelectorAll("#lowerCalContainer td");
   calButtons.forEach((button) => {
-    button.addEventListener("click", buttonController);
+    button.addEventListener("click", (e) =>
+      eventController(e.target.textContent)
+    );
   });
 }
-getButtonInput();
+getMouseClickInput();
 
 /** Get the display dom object */
 function getDisplay() {
