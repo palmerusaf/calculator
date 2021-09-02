@@ -46,7 +46,6 @@ console.log(mathOpsSelection(4., "÷", 0));
 console.log(mathOpsSelection(4, "f", 0));
 console.log(mathOpsSelection(4, "f", 1));
  //*/
-
 /** Callback function that gets text content and call appropriate display
  * function, redirecting all display ops */
 function eventController(displayInput) {
@@ -103,6 +102,49 @@ function getMouseClickInput() {
 }
 getMouseClickInput();
 
+function getKeyboardInput() {
+  document.addEventListener("keydown", (e) => {
+    e.preventDefault();
+    switch (e.key) {
+      case "/":
+        eventController("÷");
+        break;
+      case "*":
+        eventController("×");
+        break;
+      case "-":
+        eventController("-");
+        break;
+      case "+":
+        eventController("+");
+        break;
+      case "Enter":
+        eventController("=");
+        break;
+      case "=":
+        eventController("=");
+        break;
+      case "Backspace":
+        eventController("←");
+        break;
+      case "Delete":
+        eventController("C");
+        break;
+      case "c":
+        eventController("C");
+        break;
+        default:
+          if(Number.isInteger(+e.key))
+          eventController(e.key);
+          break;
+    }
+  });
+}
+getKeyboardInput();
+document.addEventListener("keydown", (e) => {
+  console.log(e.key);
+  e.preventDefault();
+});
 /** Get the display dom object */
 function getDisplay() {
   return document.querySelector("#numDisplay");
