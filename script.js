@@ -52,7 +52,9 @@ function eventController(displayInput) {
   // clear error msgs
   if (
     readFromDisplay()[0].includes("e") ||
-    readFromDisplay()[0].includes("ERROR")
+    readFromDisplay()[0].includes("ERROR")||
+    readFromDisplay().includes("∞")||
+    readFromDisplay().includes("-∞")
   )
     clearDisplay();
   if (Number.isInteger(+displayInput)) {
