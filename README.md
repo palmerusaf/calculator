@@ -4,11 +4,11 @@
 ## Description
 
 This project is a simple GUI calculator using vanilla JavaScript, CSS, and HTML.
-# Motivation
+## Motivation
 
 The motivation behind this project was to learn how to implement the JavaScript, CSS, and HTML skills I have learn thus far. Additionally, this project's purpose was to further develop my problem comprehension, planning, and decomposition skills.
 
-# Lessons Learned
+## Lessons Learned
 
 Many time wasting refactors went into this project. Some of this was simply a result of learning while implementing. However, some refactors could have been prevented with a better planning and research cycle. 
 ## Features
@@ -39,7 +39,7 @@ The following on-screen buttons are mapped to the corresponding keys below:
 |         =        |  = or Enter |
 |         C        | c or Delete |
 
-# Known Bugs and Limitations
+## Known Bugs and Limitations
 
 * Currently can only support two number entries and a single math function.
 * If the user enters a successive number of 9s the number will be rounded.
