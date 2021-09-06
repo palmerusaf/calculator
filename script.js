@@ -52,8 +52,8 @@ function eventController(displayInput) {
   // clear error msgs
   if (
     readFromDisplay()[0].includes("e") ||
-    readFromDisplay()[0].includes("ERROR")||
-    readFromDisplay().includes("∞")||
+    readFromDisplay()[0].includes("ERROR") ||
+    readFromDisplay().includes("∞") ||
     readFromDisplay().includes("-∞")
   )
     clearDisplay();
@@ -107,46 +107,40 @@ getMouseClickInput();
 function getKeyboardInput() {
   document.addEventListener("keydown", (e) => {
     e.preventDefault();
-    switch (e.key) {
-      case "/":
-        eventController("÷");
-        break;
-      case "*":
-        eventController("×");
-        break;
-      case "-":
-        eventController("-");
-        break;
-      case "+":
-        eventController("+");
-        break;
-      case "Enter":
-        eventController("=");
-        break;
-      case "=":
-        eventController("=");
-        break;
-      case "Backspace":
-        eventController("←");
-        break;
-      case "Delete":
-        eventController("C");
-        break;
-      case "c":
-        eventController("C");
-        break;
-        default:
-          if(Number.isInteger(+e.key))
-          eventController(e.key);
+    if (
+      e.key == "-" ||
+      e.key == "+" ||
+      e.key == "-" ||
+      e.key == "." ||
+      Number.isInteger(+e.key)
+    )
+      eventController(e.key);
+    else {
+      switch (e.key) {
+        case "/":
+          eventController("÷");
           break;
+        case "*":
+          eventController("×");
+          break;
+        case "Enter":
+          eventController("=");
+          break;
+        case "Backspace":
+          eventController("←");
+          break;
+        case "Delete":
+          eventController("C");
+          break;
+        case "c":
+          eventController("C");
+          break;
+      }
     }
   });
 }
 getKeyboardInput();
-document.addEventListener("keydown", (e) => {
-  console.log(e.key);
-  e.preventDefault();
-});
+
 /** Get the display dom object */
 function getDisplay() {
   return document.querySelector("#numDisplay");
