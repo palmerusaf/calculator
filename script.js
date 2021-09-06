@@ -110,7 +110,7 @@ function getKeyboardInput() {
     if (
       e.key == "-" ||
       e.key == "+" ||
-      e.key == "-" ||
+      e.key == "=" ||
       e.key == "." ||
       Number.isInteger(+e.key)
     )
