@@ -30,6 +30,10 @@
   background: #000;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Iceland", cursive;
   background-color: var(--backgroundColor);
@@ -45,12 +49,12 @@ header h1 {
   height: 7vh;
 }
 
-a:link{
+a:link {
   text-decoration: none;
 }
 
-header h1:hover{
-  background-color:var(--calculatorBackgroundColor);
+header h1:hover {
+  background-color: var(--calculatorBackgroundColor);
 }
 
 #calContainer {
@@ -90,8 +94,8 @@ header h1:hover{
   border-width: 0.5vh;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
-  border-style:solid;
-  border-color:var(--backgroundColor);
+  border-style: solid;
+  border-color: var(--backgroundColor);
 }
 
 /* affects all buttons */
@@ -100,9 +104,9 @@ header h1:hover{
   width: 100em;
   font-family: "Iceland", cursive;
   font-size: 200%;
-  border-radius: .3em;
+  border-radius: 0.3em;
   border-width: 0.5vh;
-  border-style:solid;
+  border-style: solid;
 }
 
 /* affects all buttons on hover*/
@@ -117,7 +121,7 @@ header h1:hover{
   color: var(--displayTextColor);
   transform: scale(0.95);
   transition: color;
-/*   transition-duration: 0.2s; */
+  /*   transition-duration: 0.2s; */
 }
 
 #digitContainer {
@@ -125,7 +129,7 @@ header h1:hover{
   width: 50%;
   padding: 1vmin;
   padding-right: 0.5vmin;
-  border-right-style:dotted;
+  border-right-style: dotted;
 }
 
 #mathFuncContainer {
