@@ -147,6 +147,11 @@ header h1:hover {
   font-size: 13vmin;
 }
 
+#digitContainer table,
+#mathFuncContainer table {
+  height: 100%;
+}
+
 #mathFuncContainer td {
   height: 21vh;
   width: 40vw;
